@@ -16,6 +16,7 @@
 		078A78F3285EACAB00E7D885 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 078A78F1285EACAB00E7D885 /* LaunchScreen.storyboard */; };
 		078A78FE285EACAB00E7D885 /* WalletTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078A78FD285EACAB00E7D885 /* WalletTests.swift */; };
 		078A7909285EACAB00E7D885 /* WalletUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078A7908285EACAB00E7D885 /* WalletUITests.swift */; };
+		078A792C287326FB00E7D885 /* MongoHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078A792B287326FB00E7D885 /* MongoHelper.swift */; };
 		C489A2D125539B240ED4F34B /* libPods-Wallet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DA2E9C3A782B64CC6E8A87E3 /* libPods-Wallet.a */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +53,7 @@
 		078A7904285EACAB00E7D885 /* WalletUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WalletUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		078A7908285EACAB00E7D885 /* WalletUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletUITests.swift; sourceTree = "<group>"; };
 		078A790A285EACAB00E7D885 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		078A792B287326FB00E7D885 /* MongoHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MongoHelper.swift; sourceTree = "<group>"; };
 		4FC04BB26B9768AB40B5952D /* Pods-Wallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wallet.debug.xcconfig"; path = "Target Support Files/Pods-Wallet/Pods-Wallet.debug.xcconfig"; sourceTree = "<group>"; };
 		6B7B110C6BA5E089257181E0 /* Pods-Wallet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wallet.release.xcconfig"; path = "Target Support Files/Pods-Wallet/Pods-Wallet.release.xcconfig"; sourceTree = "<group>"; };
 		DA2E9C3A782B64CC6E8A87E3 /* libPods-Wallet.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Wallet.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -108,6 +110,7 @@
 		078A78E2285EACA900E7D885 /* Wallet */ = {
 			isa = PBXGroup;
 			children = (
+				078A792A287326E000E7D885 /* Tools */,
 				078A78E3285EACA900E7D885 /* AppDelegate.swift */,
 				078A78E5285EACA900E7D885 /* SceneDelegate.swift */,
 				078A78E7285EACA900E7D885 /* ViewController.swift */,
@@ -138,6 +141,14 @@
 			path = WalletUITests;
 			sourceTree = "<group>";
 		};
+		078A792A287326E000E7D885 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				078A792B287326FB00E7D885 /* MongoHelper.swift */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
 		617D24195EC57D1B82AF0089 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -152,7 +163,6 @@
 				4FC04BB26B9768AB40B5952D /* Pods-Wallet.debug.xcconfig */,
 				6B7B110C6BA5E089257181E0 /* Pods-Wallet.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -316,6 +326,7 @@
 				078A78E8285EACA900E7D885 /* ViewController.swift in Sources */,
 				078A78E4285EACA900E7D885 /* AppDelegate.swift in Sources */,
 				078A78E6285EACA900E7D885 /* SceneDelegate.swift in Sources */,
+				078A792C287326FB00E7D885 /* MongoHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -493,7 +504,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = EQK7HQ2C5P;
 				INFOPLIST_FILE = Wallet/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -512,7 +525,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = EQK7HQ2C5P;
 				INFOPLIST_FILE = Wallet/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
