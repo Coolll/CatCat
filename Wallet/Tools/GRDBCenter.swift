@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import GRDB
+//import GRDB
 class GRDBCenter: NSObject {
     static let shared = GRDBCenter()
     
@@ -96,7 +96,7 @@ class GRDBCenter: NSObject {
                 do {
                     try db.create(table: "MongoCat", body: { t in
                         t.autoIncrementedPrimaryKey("customID", onConflict: .replace)
-                        t.column("dateInfo", .double)
+                        t.column("dateInfo", .integer)
                         t.column("codeStr", .text)
                         t.column("nameString", .text)
                         t.column("dayEnd", .text)
@@ -122,6 +122,12 @@ class GRDBCenter: NSObject {
                 if res == true {
                     try db.create(index: "code_index", on: "MongoCat", columns: ["codeStr"])
                 }
+                
+                let dateIndex = try db.indexes(on: "MongoCat").filter({ $0.name == "date_index" }).isEmpty
+                if dateIndex == true {
+                    try db.create(index: "date_index", on: "MongoCat", columns: ["dateInfo"])
+                }
+
             })
         } catch {
             let error = DatabaseError.errorDomain
@@ -130,7 +136,112 @@ class GRDBCenter: NSObject {
 
     }
     
+    // MARK: - 增
+    func insertCatModelsToDatabase(models: [MongoItem]) {
+        if self.grdbPool == nil {
+            return
+        }
+
+        do {
+            try self.grdbPool?.write({ db in
+
+                for model in models {
+                    let sqlString = String(format: "select * from MongoCat where codeStr='%@' and dateInfo='%@'", model.codeStr, model.dateStr)
+                    let curData = try MongoCatRecord.fetchAll(db, sql: sqlString )
+                    var contain = false
+                    if curData.count > 0 {
+                        contain = true
+                    }
+                    let dateValue = NSString(format: "%@", model.dateStr).integerValue
+                    let table = MongoCatRecord.init(dateInfo: dateValue,
+                                                    codeStr: model.codeStr,
+                                                    nameString: model.nameString,
+                                                    dayEnd: model.dayEnd,
+                                                    dayHigh: model.dayHigh,
+                                                    dayLow: model.dayLow,
+                                                    dayStart: model.dayStart,
+                                                    beforeDayEnd: model.beforeDayEnd,
+                                                    upOrDownValue: model.upOrDownValue,
+                                                    upOrDownRate: model.upOrDownRate,
+                                                    changeRate: model.changeRate,
+                                                    dealNumber: model.dealNumber,
+                                                    dealMoney: model.dealMoney,
+                                                    totalValue: model.totalValue,
+                                                    flowValue: model.flowValue,
+                                                    dealPenCount: model.dealPenCount)
+                    do {
+                        if contain == false {
+                            try table.insert(db)
+                        }
+                    } catch let errorInfo as DatabaseError {
+                        Log(errorInfo.message)
+                        Log(errorInfo.sql)
+                    } catch {
+                        let error = DatabaseError.errorDomain
+                        Log(error)
+                    }
+                }
+            })
+        } catch let errorInfo as DatabaseError {
+            Log(errorInfo.message)
+        } catch {
+            let error = DatabaseError.errorDomain
+            Log(error)
+        }
+    }
     
+    // MARK: - 删
+    func removeAllCat() {
+        if self.grdbPool == nil {
+            return
+        }
+        do {
+            try _ = self.grdbPool!.write({ db in
+                try MongoCatRecord.deleteAll(db)
+            })
+        } catch {
+            Log("delete error")
+        }
+    }
+    
+    // MARK: - 查
+    func fetchAllCatRecords(catCode: String, fromDate: String, endDate: String) -> ([MongoCatRecord]?) {
+        if self.grdbPool == nil {
+            return []
+        }
+        let fromValue = NSString(format: "%@", fromDate).integerValue
+        let endValue = NSString(format: "%@", endDate).integerValue
+        let sqlStr = String(format: "SELECT * from MongoCat where codeStr='%@' and dateInfo>%ld and dateInfo<%ld order by dateInfo desc", catCode, fromValue, endValue)
+//        let sqlStr = String(format: "SELECT * from MongoCat where codeStr='%@' order by dateInfo desc", catCode, fromDate, endDate)
+
+        let originData = self.readNodeDataWithCondition(sqlString: sqlStr)
+        return originData
+    }
+    
+    func readNodeDataWithCondition(sqlString: String) -> ([MongoCatRecord]?) {
+        if self.grdbPool == nil {
+            return nil
+        }
+
+        do {
+            let resultArr: [MongoCatRecord] = try self.grdbPool!.read({ db in
+                if sqlString.isEmpty == true {
+                    return try MongoCatRecord.fetchAll(db)
+                } else {
+                    return try MongoCatRecord.fetchAll(db, sql: sqlString)
+                }
+            })
+            return resultArr
+        } catch let errorInfo as DatabaseError {
+            Log(errorInfo.message)
+        } catch {
+            let error = DatabaseError.errorDomain
+            Log(error)
+        }
+
+        return nil
+    }
+
 
 
 }
@@ -138,8 +249,8 @@ class GRDBCenter: NSObject {
 
 
 // GRDB
-class CatCatRecord: Record {
-    var dateInfo: Double = 666.0
+class MongoCatRecord: Record {
+    var dateInfo: Int = 666
     var codeStr: String = ""
     var nameString: String = ""
     var dayEnd: String = ""
@@ -156,7 +267,7 @@ class CatCatRecord: Record {
     var flowValue: String = ""
     var dealPenCount: String = ""
 
-    init(dateInfo: Double,
+    init(dateInfo: Int,
          codeStr: String,
          nameString: String,
          dayEnd: String,
