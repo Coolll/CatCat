@@ -17,6 +17,8 @@
 		078A78FE285EACAB00E7D885 /* WalletTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078A78FD285EACAB00E7D885 /* WalletTests.swift */; };
 		078A7909285EACAB00E7D885 /* WalletUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078A7908285EACAB00E7D885 /* WalletUITests.swift */; };
 		078A792C287326FB00E7D885 /* MongoHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078A792B287326FB00E7D885 /* MongoHelper.swift */; };
+		078A793A2874780200E7D885 /* GRDBCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078A79392874780200E7D885 /* GRDBCenter.swift */; };
+		078A793F28747C5B00E7D885 /* CommonFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078A793E28747C5B00E7D885 /* CommonFile.swift */; };
 		C489A2D125539B240ED4F34B /* libPods-Wallet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DA2E9C3A782B64CC6E8A87E3 /* libPods-Wallet.a */; };
 /* End PBXBuildFile section */
 
@@ -54,6 +56,8 @@
 		078A7908285EACAB00E7D885 /* WalletUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletUITests.swift; sourceTree = "<group>"; };
 		078A790A285EACAB00E7D885 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		078A792B287326FB00E7D885 /* MongoHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MongoHelper.swift; sourceTree = "<group>"; };
+		078A79392874780200E7D885 /* GRDBCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GRDBCenter.swift; sourceTree = "<group>"; };
+		078A793E28747C5B00E7D885 /* CommonFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonFile.swift; sourceTree = "<group>"; };
 		4FC04BB26B9768AB40B5952D /* Pods-Wallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wallet.debug.xcconfig"; path = "Target Support Files/Pods-Wallet/Pods-Wallet.debug.xcconfig"; sourceTree = "<group>"; };
 		6B7B110C6BA5E089257181E0 /* Pods-Wallet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wallet.release.xcconfig"; path = "Target Support Files/Pods-Wallet/Pods-Wallet.release.xcconfig"; sourceTree = "<group>"; };
 		DA2E9C3A782B64CC6E8A87E3 /* libPods-Wallet.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Wallet.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -144,7 +148,9 @@
 		078A792A287326E000E7D885 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				078A793E28747C5B00E7D885 /* CommonFile.swift */,
 				078A792B287326FB00E7D885 /* MongoHelper.swift */,
+				078A79392874780200E7D885 /* GRDBCenter.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -324,7 +330,9 @@
 			files = (
 				078A78EE285EACA900E7D885 /* Wallet.xcdatamodeld in Sources */,
 				078A78E8285EACA900E7D885 /* ViewController.swift in Sources */,
+				078A793F28747C5B00E7D885 /* CommonFile.swift in Sources */,
 				078A78E4285EACA900E7D885 /* AppDelegate.swift in Sources */,
+				078A793A2874780200E7D885 /* GRDBCenter.swift in Sources */,
 				078A78E6285EACA900E7D885 /* SceneDelegate.swift in Sources */,
 				078A792C287326FB00E7D885 /* MongoHelper.swift in Sources */,
 			);

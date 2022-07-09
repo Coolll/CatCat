@@ -1,16 +1,22 @@
 PODS:
   - Alamofire (5.6.1)
+  - GRDB.swift (5.16.0):
+    - GRDB.swift/standard (= 5.16.0)
+  - GRDB.swift/standard (5.16.0)
 
 DEPENDENCIES:
   - Alamofire (~> 5.6.1)
+  - GRDB.swift (~> 5.16.0)
 
 SPEC REPOS:
   trunk:
     - Alamofire
+    - GRDB.swift
 
 SPEC CHECKSUMS:
   Alamofire: 87bd8c952f9a4454320fce00d9cc3de57bcadaf5
+  GRDB.swift: 180e55fec683c77c917dc80db33e1e4d472ec83d
 
-PODFILE CHECKSUM: 438bf40b01fb91422cfefcf94a9c715c3fb85cf0
+PODFILE CHECKSUM: 1ddd37991f86549e8aa54fb96a887819487392ed
 
 COCOAPODS: 1.9.3
